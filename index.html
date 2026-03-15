@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mir Shabnam — Digital Humanities Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink-mid: #4a4640;
+    --ink-light: #8a8480;
+    --paper: #faf8f4;
+    --cream: #f2ede4;
+    --rule: #d8d0c4;
+    --accent: #7c4a2e;
+    --accent-light: #c4956a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 9rem 3rem 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.15s;
+  }
+
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-body {
+    font-size: 1.25rem;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    max-width: 620px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-rule {
+    width: 48px; height: 1px;
+    background: var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .hero-meta {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+  }
+
+  .hero-meta span { color: var(--ink-mid); }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 3rem 2rem;
+    display: flex; align-items: baseline; gap: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-header h2 {
+    font-size: 0.7rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .section-header .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── PROJECT GRID ── */
+  .projects-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 3rem 6rem;
+    display: grid;
+    gap: 0;
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .project-card:hover { background: var(--cream); padding-left: 1rem; padding-right: 1rem; margin-left: -1rem; margin-right: -1rem; border-radius: 4px; }
+
+  .project-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent-light);
+    letter-spacing: 0.1em;
+    padding-top: 0.3rem;
+    text-align: right;
+  }
+
+  .project-content {}
+
+  .project-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .project-tag.power { color: var(--accent); }
+
+  .project-title {
+    font-size: 1.45rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .project-subtitle {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-bottom: 0.7rem;
+  }
+
+  .project-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    max-width: 520px;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-meta {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+
+  .project-method {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+    background: var(--cream);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  /* ── ABOUT SECTION ── */
+  .about-section {
+    background: var(--cream);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .about-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .about-left h3 {
+    font-size: 0.7rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-left p {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    margin-bottom: 1rem;
+  }
+
+  .about-right h3 {
+    font-size: 0.7rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .tools-list {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+
+  .tool-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--ink-mid);
+    border: 1px solid var(--rule);
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  .contact-block {
+    margin-top: 2rem;
+  }
+
+  .contact-block a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .project-card:nth-child(1) { animation-delay: 0.1s; }
+  .project-card:nth-child(2) { animation-delay: 0.18s; }
+  .project-card:nth-child(3) { animation-delay: 0.26s; }
+  .project-card:nth-child(4) { animation-delay: 0.34s; }
+  .project-card:nth-child(5) { animation-delay: 0.42s; }
+  .project-card:nth-child(6) { animation-delay: 0.50s; }
+  .project-card:nth-child(7) { animation-delay: 0.58s; }
+  .project-card:nth-child(8) { animation-delay: 0.66s; }
+  .project-card:nth-child(9) { animation-delay: 0.74s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    nav { padding: 0 1.5rem; }
+    .hero, .section-header, .projects-grid, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-num { text-align: left; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Mir Shabnam</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://github.com/MirShabnam" target="_blank">GitHub</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-label">Digital Humanities Research Portfolio</p>
+  <h1>Power, Knowledge,<br>and <em>Who Gets to Speak</em></h1>
+  <div class="hero-rule"></div>
+  <p class="hero-body">I am a postcolonial and digital humanities researcher based in Srinagar, Kashmir. My work asks a single question: how do global knowledge frameworks determine which literary and intellectual traditions are made visible — and on what terms?</p>
+  <p class="hero-meta">
+    <span>Mir Shabnam</span> &ensp;·&ensp; Independent Researcher &ensp;·&ensp; Srinagar, Kashmir
+  </p>
+</section>
+
+<div id="projects">
+  <div class="section-header">
+    <span class="section-num">§ 01</span>
+    <h2>Power &amp; Knowledge — New Research Projects</h2>
+  </div>
+
+  <div class="projects-grid">
+
+    <a class="project-card" href="project-citation-map.html">
+      <div class="project-num">01</div>
+      <div class="project-content">
+        <p class="project-tag power">Epistemic Power</p>
+        <h3 class="project-title">Who Gets to Define the Global?</h3>
+        <p class="project-subtitle">A Citation Power Map of Global Studies Scholarship</p>
+        <p class="project-desc">A Gephi network visualisation mapping citation patterns across 20+ foundational global studies texts, revealing that a field claiming to study the globe concentrates overwhelmingly in European and North American institutional voices.</p>
+        <div class="project-meta">
+          <span class="project-method">Gephi</span>
+          <span class="project-method">Network Analysis</span>
+          <span class="project-method">Citation Data</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-card" href="project-un-kashmir.html">
+      <div class="project-num">02</div>
+      <div class="project-content">
+        <p class="project-tag power">Discursive Power</p>
+        <h3 class="project-title">The Language of Occupation</h3>
+        <p class="project-subtitle">Computational Text Analysis of UN Resolutions on Kashmir, 1948–2019</p>
+        <p class="project-desc">A Voyant Tools corpus analysis of all UN Security Council resolutions on Jammu &amp; Kashmir, tracking how the language of self-determination was gradually replaced by the language of stability and counterterrorism over seven decades.</p>
+        <div class="project-meta">
+          <span class="project-method">Voyant Tools</span>
+          <span class="project-method">Text Analysis</span>
+          <span class="project-method">UN Corpus</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-card" href="project-europes-others.html">
+      <div class="project-num">03</div>
+      <div class="project-content">
+        <p class="project-tag power">Colonial Power</p>
+        <h3 class="project-title">Europe's Others</h3>
+        <p class="project-subtitle">A Spatial History of Colonial Knowledge Extraction</p>
+        <p class="project-desc">A StoryMapJS spatial argument tracing ten moments where European institutions — Kew Gardens, the British Museum, the Bodleian Library — extracted knowledge, texts, and cultural objects from colonised territories and incorporated them into European intellectual authority.</p>
+        <div class="project-meta">
+          <span class="project-method">StoryMapJS</span>
+          <span class="project-method">Spatial History</span>
+          <span class="project-method">Colonial Archives</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="section-header">
+    <span class="section-num">§ 02</span>
+    <h2>Earlier Research Projects</h2>
+  </div>
+
+  <div class="projects-grid">
+
+    <a class="project-card" href="project-nature.html">
+      <div class="project-num">04</div>
+      <div class="project-content">
+        <p class="project-tag">Epistemology · Environment</p>
+        <h3 class="project-title">Nature: Poetry or Report?</h3>
+        <p class="project-subtitle">The Cultural Politics of Environmental Representation</p>
+        <p class="project-desc">A computational text analysis comparing pre-industrial nature poetry with contemporary scientific environmental reports, reading the shift from poetic to documentary modes as a symptom of deeper changes in cultural authority and knowledge power.</p>
+        <div class="project-meta">
+          <span class="project-method">Python · NLTK</span>
+          <span class="project-method">TEI-XML</span>
+          <span class="project-method">Sentiment Analysis</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-card" href="project-care-endurance.html">
+      <div class="project-num">05</div>
+      <div class="project-content">
+        <p class="project-tag">Comparative Literature · Global Trauma</p>
+        <h3 class="project-title">Care vs Endurance</h3>
+        <p class="project-subtitle">Han Kang &amp; László Krasznahorkai — A Digital Humanities Comparative Study</p>
+        <p class="project-desc">A data-driven comparison of two Nobel laureates from radically different postcolonial and post-Communist literary traditions, using TEI corpora, sentiment analysis, and network visualisation to examine divergent literary philosophies of historical trauma.</p>
+        <div class="project-meta">
+          <span class="project-method">TEI-XML</span>
+          <span class="project-method">Python</span>
+          <span class="project-method">Network Analysis</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-card" href="project-beckett-dostoevsky.html">
+      <div class="project-num">06</div>
+      <div class="project-content">
+        <p class="project-tag">Comparative Philosophy · Existentialism</p>
+        <h3 class="project-title">Two Faces of the Void</h3>
+        <p class="project-subtitle">Beckett's Waiting and Dostoevsky's Despair</p>
+        <p class="project-desc">A computational exploration of how Beckett and Dostoevsky construct divergent literary responses to the collapse of meaning — one performing the void in the texture of prose, the other contesting it from within.</p>
+        <div class="project-meta">
+          <span class="project-method">Python · spaCy</span>
+          <span class="project-method">Lexical Analysis</span>
+          <span class="project-method">Co-occurrence Networks</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-card" href="project-technofeudalism.html">
+      <div class="project-num">07</div>
+      <div class="project-content">
+        <p class="project-tag">Power · Digital Culture</p>
+        <h3 class="project-title">Feudalism to Technofeudalism</h3>
+        <p class="project-subtitle">Power, Hierarchy, and Digital Culture</p>
+        <p class="project-desc">A cultural studies analysis arguing that the logic of digital platform capitalism is a structural continuation of historical feudalism — that data rent, algorithmic control, and platform dependency reproduce the power structures of an older economic order.</p>
+        <div class="project-meta">
+          <span class="project-method">Python · Pandas</span>
+          <span class="project-method">Historical Data</span>
+          <span class="project-method">Cultural Studies</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-card" href="project-marx.html">
+      <div class="project-num">08</div>
+      <div class="project-content">
+        <p class="project-tag">Intellectual History · Marxism</p>
+        <h3 class="project-title">Marx: Theory vs Action</h3>
+        <p class="project-subtitle">Mapping the Intellectual Drift of Radical Thought</p>
+        <p class="project-desc">An intellectual network map tracing the transformation of Marxist thought from Marx's original insistence on the unity of theory and praxis toward the increasing abstraction of 20th-century Western Marxism — and the political consequences of that drift.</p>
+        <div class="project-meta">
+          <span class="project-method">NetworkX · Gephi</span>
+          <span class="project-method">Intellectual Mapping</span>
+          <span class="project-method">Python</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="project-card" href="project-wisdom-empire.html">
+      <div class="project-num">09</div>
+      <div class="project-content">
+        <p class="project-tag">Philosophy · Power · Empire</p>
+        <h3 class="project-title">From Wisdom to Empire</h3>
+        <p class="project-subtitle">Socrates, Plato, Aristotle, and Alexander</p>
+        <p class="project-desc">A digital humanities mapping of how Greek philosophical wisdom — rooted in Socratic moral inquiry — transformed into the intellectual infrastructure of empire, tracing the dangerous universalist logic that runs from Athens to Macedonian conquest.</p>
+        <div class="project-meta">
+          <span class="project-method">Biographical Mapping</span>
+          <span class="project-method">Python · NetworkX</span>
+          <span class="project-method">Geospatial</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div id="about" class="about-section">
+  <div class="about-inner">
+    <div class="about-left">
+      <h3>About This Research</h3>
+      <p>I am a postcolonial and digital humanities researcher based in Srinagar, Kashmir. My primary research focuses on Kashmiri and Urdu women's literary culture — specifically on Dr. Tarannum Riyaz, the founding figure of Kashmiri women's Urdu fiction — and on the All-India Progressive Writers' Movement as a decolonial intellectual network.</p>
+      <p>I hold degrees in English Literature, Psychology, and Philosophy, and am currently completing an MA in Philosophy at IGNOU. I have worked as an Administrative Officer in the Government of Jammu and Kashmir, where I gained direct experience of how state epistemology produces and distorts social knowledge.</p>
+      <p>The projects collected here form part of a larger research programme on how global knowledge frameworks determine which literary and intellectual traditions are made legible — and on what terms.</p>
+      <div class="contact-block">
+        <a href="mailto:Mirshabnam101@gmail.com">Mirshabnam101@gmail.com</a>
+        <a href="https://github.com/MirShabnam" target="_blank">github.com/MirShabnam</a>
+      </div>
+    </div>
+    <div class="about-right">
+      <h3>Methods &amp; Tools</h3>
+      <div class="tools-list">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">TEI-XML</span>
+        <span class="tool-tag">Voyant Tools</span>
+        <span class="tool-tag">Gephi</span>
+        <span class="tool-tag">Palladio</span>
+        <span class="tool-tag">Omeka</span>
+        <span class="tool-tag">StoryMapJS</span>
+        <span class="tool-tag">NetworkX</span>
+        <span class="tool-tag">NLTK</span>
+        <span class="tool-tag">spaCy</span>
+        <span class="tool-tag">Pandas</span>
+        <span class="tool-tag">Matplotlib</span>
+        <span class="tool-tag">QGIS</span>
+        <span class="tool-tag">Zotero</span>
+        <span class="tool-tag">GitHub</span>
+        <span class="tool-tag">Tableau</span>
+      </div>
+      <br>
+      <h3 style="margin-top:1.5rem;">Research Areas</h3>
+      <div class="tools-list" style="margin-top:1rem;">
+        <span class="tool-tag">Postcolonial Theory</span>
+        <span class="tool-tag">Global Knowledge Systems</span>
+        <span class="tool-tag">South Asian Literary History</span>
+        <span class="tool-tag">Kashmiri Literature</span>
+        <span class="tool-tag">Urdu Fiction</span>
+        <span class="tool-tag">Feminist DH</span>
+        <span class="tool-tag">Archival Studies</span>
+        <span class="tool-tag">Politics of Representation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Mir Shabnam &ensp;·&ensp; Srinagar, Kashmir, India &ensp;·&ensp; 2025</p>
+  <p><a href="https://github.com/MirShabnam" target="_blank">GitHub</a></p>
+</footer>
+
+</body>
+</html>

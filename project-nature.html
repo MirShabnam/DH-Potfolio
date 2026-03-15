@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nature: Poetry or Report? — Mir Shabnam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814; --ink-mid: #4a4640; --ink-light: #8a8480;
+    --paper: #faf8f4; --cream: #f2ede4; --rule: #d8d0c4;
+    --accent: #7c4a2e; --accent-light: #c4956a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+  .nav-back { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .project-hero { padding: 8rem 3rem 4rem; max-width: 820px; margin: 0 auto; opacity: 0; animation: fadeUp 0.8s ease forwards 0.1s; }
+  .project-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+  .project-hero h1 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 300; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.8rem; }
+  .project-hero h1 em { font-style: italic; color: var(--accent); }
+  .project-subtitle { font-size: 1.2rem; font-style: italic; color: var(--ink-light); margin-bottom: 2rem; }
+  .project-rule { width: 48px; height: 1px; background: var(--accent); margin-bottom: 2rem; }
+  .project-lead { font-size: 1.2rem; line-height: 1.75; color: var(--ink-mid); max-width: 640px; }
+  .project-body { max-width: 820px; margin: 0 auto; padding: 0 3rem 6rem; }
+  .project-body section { margin-bottom: 3.5rem; }
+  .section-label { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule); }
+  .project-body p { font-size: 1.1rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 1.2rem; }
+  .project-body h3 { font-size: 1.3rem; font-weight: 400; color: var(--ink); margin: 1.5rem 0 0.6rem; }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .method-card { background: var(--cream); border: 1px solid var(--rule); padding: 1rem 1.2rem; border-radius: 3px; }
+  .method-card .method-name { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .method-card .method-desc { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.5; }
+  .finding-block { border-left: 2px solid var(--accent-light); padding: 0.8rem 1.5rem; margin: 1.2rem 0; background: var(--cream); }
+  .finding-block p { font-size: 1.05rem; color: var(--ink); margin: 0; font-style: italic; }
+  .viz-placeholder { background: var(--cream); border: 1px solid var(--rule); border-radius: 4px; padding: 3rem 2rem; text-align: center; margin: 1.5rem 0; }
+  .viz-placeholder .viz-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .viz-placeholder .viz-title { font-size: 1rem; color: var(--ink-mid); font-style: italic; }
+  .data-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.95rem; }
+  .data-table th { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0.7rem 1rem; text-align: left; }
+  .data-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--rule); color: var(--ink-mid); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--cream); }
+  .citation-block { background: var(--cream); border: 1px solid var(--rule); padding: 1.5rem 2rem; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 0.75rem; line-height: 1.7; color: var(--ink-mid); }
+  footer { max-width: 820px; margin: 0 auto; padding: 2rem 3rem; display: flex; justify-content: space-between; border-top: 1px solid var(--rule); }
+  footer p { font-family: 'Jost', sans-serif; font-size: 0.72rem; color: var(--ink-light); }
+  footer a { color: var(--accent); text-decoration: none; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 680px) { nav, .project-hero, .project-body, footer { padding-left: 1.5rem; padding-right: 1.5rem; } .method-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Mir Shabnam</a>
+  <a class="nav-back" href="index.html">← All Projects</a>
+</nav>
+<div class="project-hero">
+  <p class="project-tag">Epistemology · Environmental Representation</p>
+  <h1>Nature: Poetry<br>or <em>Report?</em></h1>
+  <p class="project-subtitle">The Cultural Politics of Environmental Representation</p>
+  <div class="project-rule"></div>
+  <p class="project-lead">A computational text analysis comparing pre-industrial nature poetry with contemporary scientific environmental reports — reading the shift from literary-poetic to documentary-scientific modes as a symptom of deeper changes in cultural authority, knowledge power, and the epistemology of the natural world.</p>
+</div>
+<div class="project-body">
+
+<section>
+  <p class="section-label">Research Question</p>
+  <p>How did humanity's authoritative representation of the natural world change from the literary-poetic to the scientific-documentary — and what does that shift reveal about which institutions get to speak with authority about nature, and on what terms?</p>
+  <p>This project argues that the move from Wordsworth's "spots of time" to the IPCC's carbon budget projections is not simply a generic shift. It is an epistemological transformation: from knowledge-as-relation to knowledge-as-measurement, from nature as inhabited to nature as data.</p>
+</section>
+
+<section>
+  <p class="section-label">Methods</p>
+  <div class="method-grid">
+    <div class="method-card"><div class="method-name">TEI-XML Corpus</div><div class="method-desc">Structured encoding of poetic and report corpora using Text Encoding Initiative standards.</div></div>
+    <div class="method-card"><div class="method-name">Python · NLTK</div><div class="method-desc">Token frequency, type-token ratio, sentiment analysis (VADER), and lexical diversity metrics.</div></div>
+    <div class="method-card"><div class="method-name">Co-occurrence Networks</div><div class="method-desc">NetworkX visualisation of semantic relationships across both corpora.</div></div>
+    <div class="method-card"><div class="method-name">Comparative Analysis</div><div class="method-desc">Statistical comparison of sentiment, lexical density, and keyword distribution between poetic and scientific corpora.</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="section-label">Corpus</p>
+  <p><strong>Poetic corpus:</strong> Wordsworth, Keats, John Clare, Tagore, Faiz Ahmad Faiz — pre-industrial and early industrial nature poetry from European and South Asian traditions.</p>
+  <p><strong>Report corpus:</strong> IPCC Assessment Reports, NASA climate data summaries, UNEP environmental reports — contemporary scientific-documentary texts about the natural world.</p>
+</section>
+
+<section>
+  <p class="section-label">Key Findings</p>
+  <div class="finding-block"><p>"Poetic corpus mean sentiment: +0.34. Report corpus mean sentiment: –0.12. Poetic type-token ratio: 0.71. Report type-token ratio: 0.43. These are not just stylistic differences. They are the signatures of two different relationships to the natural world."</p></div>
+  <p>The keyword analysis is the most striking finding. The poetic corpus clusters around: <em>green, still, sweet, love, light, heart, deep, living, wild, free.</em> The report corpus clusters around: <em>increase, global, temperature, species, loss, emissions, risk, decline, extreme, threat.</em> These two vocabularies share almost no words. The co-occurrence network visualises this as two semantic worlds with near-zero overlap.</p>
+  <div class="viz-placeholder"><div class="viz-label">Sentiment Comparison</div><div class="viz-title">avg_sentiment_by_type.png — upload your visualisation here</div></div>
+  <div class="viz-placeholder"><div class="viz-label">Keyword Comparison</div><div class="viz-title">top_keywords_poetry.png + top_keywords_reports.png</div></div>
+  <div class="viz-placeholder"><div class="viz-label">Co-occurrence Network</div><div class="viz-title">cooccurrence_network.png — upload here</div></div>
+</section>
+
+<section>
+  <p class="section-label">Citation</p>
+  <div class="citation-block">Shabnam, Mir. "Nature: Poetry or Report? The Cultural Politics of Environmental Representation." Independent Research. 2024. https://github.com/MirShabnam/nature-poetry-or-report</div>
+</section>
+</div>
+<footer>
+  <p>Mir Shabnam &ensp;·&ensp; 2025</p>
+  <p><a href="index.html">← Back to Portfolio</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Language of Occupation — Mir Shabnam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814; --ink-mid: #4a4640; --ink-light: #8a8480;
+    --paper: #faf8f4; --cream: #f2ede4; --rule: #d8d0c4;
+    --accent: #7c4a2e; --accent-light: #c4956a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+  .nav-back { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .project-hero { padding: 8rem 3rem 4rem; max-width: 820px; margin: 0 auto; opacity: 0; animation: fadeUp 0.8s ease forwards 0.1s; }
+  .project-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+  .project-hero h1 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 300; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.8rem; }
+  .project-hero h1 em { font-style: italic; color: var(--accent); }
+  .project-subtitle { font-size: 1.2rem; font-style: italic; color: var(--ink-light); margin-bottom: 2rem; }
+  .project-rule { width: 48px; height: 1px; background: var(--accent); margin-bottom: 2rem; }
+  .project-lead { font-size: 1.2rem; line-height: 1.75; color: var(--ink-mid); max-width: 640px; }
+  .project-body { max-width: 820px; margin: 0 auto; padding: 0 3rem 6rem; }
+  .project-body section { margin-bottom: 3.5rem; }
+  .section-label { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule); }
+  .project-body p { font-size: 1.1rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 1.2rem; }
+  .project-body h3 { font-size: 1.3rem; font-weight: 400; color: var(--ink); margin: 1.5rem 0 0.6rem; }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .method-card { background: var(--cream); border: 1px solid var(--rule); padding: 1rem 1.2rem; border-radius: 3px; }
+  .method-card .method-name { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .method-card .method-desc { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.5; }
+  .finding-block { border-left: 2px solid var(--accent-light); padding: 0.8rem 1.5rem; margin: 1.2rem 0; background: var(--cream); }
+  .finding-block p { font-size: 1.05rem; color: var(--ink); margin: 0; font-style: italic; }
+  .viz-placeholder { background: var(--cream); border: 1px solid var(--rule); border-radius: 4px; padding: 3rem 2rem; text-align: center; margin: 1.5rem 0; }
+  .viz-placeholder .viz-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .viz-placeholder .viz-title { font-size: 1rem; color: var(--ink-mid); font-style: italic; }
+  .data-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.95rem; }
+  .data-table th { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0.7rem 1rem; text-align: left; }
+  .data-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--rule); color: var(--ink-mid); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--cream); }
+  .citation-block { background: var(--cream); border: 1px solid var(--rule); padding: 1.5rem 2rem; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 0.75rem; line-height: 1.7; color: var(--ink-mid); }
+  footer { max-width: 820px; margin: 0 auto; padding: 2rem 3rem; display: flex; justify-content: space-between; border-top: 1px solid var(--rule); }
+  footer p { font-family: 'Jost', sans-serif; font-size: 0.72rem; color: var(--ink-light); }
+  footer a { color: var(--accent); text-decoration: none; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 680px) { nav, .project-hero, .project-body, footer { padding-left: 1.5rem; padding-right: 1.5rem; } .method-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Mir Shabnam</a>
+  <a class="nav-back" href="index.html">← All Projects</a>
+</nav>
+<div class="project-hero">
+  <p class="project-tag">Discursive Power · Computational Text Analysis</p>
+  <h1>The Language<br>of <em>Occupation</em></h1>
+  <p class="project-subtitle">A Computational Analysis of UN Security Council Resolutions on Kashmir, 1948–2019</p>
+  <div class="project-rule"></div>
+  <p class="project-lead">A Voyant Tools corpus analysis tracing how the international language of the Kashmir conflict transformed over seven decades — from the vocabulary of self-determination and democratic rights to the vocabulary of stability, bilateralism, and counterterrorism. The linguistic shift is itself a form of power.</p>
+</div>
+<div class="project-body">
+
+<section>
+  <p class="section-label">Research Question</p>
+  <p>The UN Security Council passed its first resolution on Kashmir in January 1948 — calling for a ceasefire and, crucially, for a free plebiscite: a vote by the people of Jammu and Kashmir to determine their own political future. That promise has never been fulfilled.</p>
+  <p>What has happened instead is a slow transformation in the international language used to describe the conflict. This project tracks that transformation computationally, asking: what words disappear from the UN corpus over time, what words replace them, and what does that linguistic drift reveal about how institutional power shapes political possibility?</p>
+</section>
+
+<section>
+  <p class="section-label">Corpus</p>
+  <table class="data-table">
+    <thead><tr><th>Resolution</th><th>Date</th><th>Key Language</th><th>Core Demand</th></tr></thead>
+    <tbody>
+      <tr><td>S/RES/38 (1948)</td><td>17 Jan 1948</td><td>cease fighting, peaceful settlement</td><td>Ceasefire + negotiation</td></tr>
+      <tr><td>S/RES/47 (1948)</td><td>21 Apr 1948</td><td><strong>plebiscite, self-determination, free and impartial vote</strong></td><td>Free plebiscite under UN auspices</td></tr>
+      <tr><td>S/RES/91 (1951)</td><td>30 Mar 1951</td><td>plebiscite, determination of future</td><td>No unilateral action on status</td></tr>
+      <tr><td>S/RES/122 (1957)</td><td>24 Jan 1957</td><td>constituent assembly invalid</td><td>Assembly cannot determine status</td></tr>
+      <tr><td>S/RES/211 (1965)</td><td>20 Sep 1965</td><td>ceasefire, withdrawal, negotiations</td><td>Ceasefire — 1965 war</td></tr>
+      <tr><td>S/RES/307 (1971)</td><td>21 Dec 1971</td><td>ceasefire, withdrawal, durable peace</td><td>End 1971 hostilities</td></tr>
+      <tr><td>OHCHR Report 2018</td><td>Jun 2018</td><td>human rights violations, accountability</td><td>First UN human rights report on Kashmir</td></tr>
+    </tbody>
+  </table>
+  <p>After 1971, formal UNSC resolutions on Kashmir ceased. The corpus is supplemented with OHCHR reports (2018, 2019) and Secretary-General statements to trace the post-Cold War and post-9/11 linguistic shifts.</p>
+</section>
+
+<section>
+  <p class="section-label">Vocabulary Tracking</p>
+  <p>The analytical core of this project is tracking the fate of specific words across the chronological corpus. The Voyant Trends tool plots their frequency across documents — making the linguistic shift visible as a graph.</p>
+  <table class="data-table">
+    <thead><tr><th>Word / Phrase</th><th>Peak Presence</th><th>Disappears After</th><th>What Its Trajectory Reveals</th></tr></thead>
+    <tbody>
+      <tr><td>plebiscite</td><td>1948–1957</td><td>1971</td><td>The core democratic demand erased from international language</td></tr>
+      <tr><td>self-determination</td><td>1948–1952</td><td>1957</td><td>Rights-based framing abandoned first</td></tr>
+      <tr><td>people of Kashmir</td><td>1948–1957</td><td>1971</td><td>The affected population gradually erased as subject</td></tr>
+      <tr><td>ceasefire</td><td>All periods</td><td>Persists</td><td>Conflict management replaces rights language</td></tr>
+      <tr><td>stability</td><td>Post-1971</td><td>—</td><td>New dominant frame: peace as absence of conflict, not justice</td></tr>
+      <tr><td>terrorism / terrorist</td><td>Post-2001</td><td>—</td><td>9/11 reframes Kashmir entirely within security paradigm</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <p class="section-label">Key Finding</p>
+  <div class="finding-block"><p>"The word 'plebiscite' appears 17 times in resolutions between 1948 and 1957. It appears zero times after 1971. This is not a natural evolution of language. It is the erasure of a promise."</p></div>
+  <div class="viz-placeholder"><div class="viz-label">Voyant Trends Visualisation</div><div class="viz-title">Frequency trends: plebiscite / self-determination / ceasefire / terrorism — upload your Voyant export here</div></div>
+  <div class="viz-placeholder"><div class="viz-label">Comparative Word Clouds</div><div class="viz-title">Early corpus (1948–1957) vs Late corpus (post-1971) — upload Cirrus exports here</div></div>
+  <p>The two word clouds make the argument visually undeniable. The early corpus is dominated by: <em>plebiscite, people, free, impartial, vote, determination, withdrawal, demilitarisation.</em> The late corpus is dominated by: <em>ceasefire, parties, bilateral, stability, peace, security, terrorism.</em> These are two completely different vocabularies for the same territory and the same people.</p>
+</section>
+
+<section>
+  <p class="section-label">Citation</p>
+  <div class="citation-block">Shabnam, Mir. "The Language of Occupation: A Computational Analysis of UN Security Council Resolutions on Kashmir, 1948–2019." Independent Research. 2025. https://github.com/MirShabnam/language-of-occupation</div>
+</section>
+</div>
+<footer>
+  <p>Mir Shabnam &ensp;·&ensp; 2025</p>
+  <p><a href="index.html">← Back to Portfolio</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marx: Theory vs Action — Mir Shabnam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814; --ink-mid: #4a4640; --ink-light: #8a8480;
+    --paper: #faf8f4; --cream: #f2ede4; --rule: #d8d0c4;
+    --accent: #7c4a2e; --accent-light: #c4956a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+  .nav-back { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .project-hero { padding: 8rem 3rem 4rem; max-width: 820px; margin: 0 auto; opacity: 0; animation: fadeUp 0.8s ease forwards 0.1s; }
+  .project-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+  .project-hero h1 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 300; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.8rem; }
+  .project-hero h1 em { font-style: italic; color: var(--accent); }
+  .project-subtitle { font-size: 1.2rem; font-style: italic; color: var(--ink-light); margin-bottom: 2rem; }
+  .project-rule { width: 48px; height: 1px; background: var(--accent); margin-bottom: 2rem; }
+  .project-lead { font-size: 1.2rem; line-height: 1.75; color: var(--ink-mid); max-width: 640px; }
+  .project-body { max-width: 820px; margin: 0 auto; padding: 0 3rem 6rem; }
+  .project-body section { margin-bottom: 3.5rem; }
+  .section-label { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule); }
+  .project-body p { font-size: 1.1rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 1.2rem; }
+  .project-body h3 { font-size: 1.3rem; font-weight: 400; color: var(--ink); margin: 1.5rem 0 0.6rem; }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .method-card { background: var(--cream); border: 1px solid var(--rule); padding: 1rem 1.2rem; border-radius: 3px; }
+  .method-card .method-name { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .method-card .method-desc { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.5; }
+  .finding-block { border-left: 2px solid var(--accent-light); padding: 0.8rem 1.5rem; margin: 1.2rem 0; background: var(--cream); }
+  .finding-block p { font-size: 1.05rem; color: var(--ink); margin: 0; font-style: italic; }
+  .viz-placeholder { background: var(--cream); border: 1px solid var(--rule); border-radius: 4px; padding: 3rem 2rem; text-align: center; margin: 1.5rem 0; }
+  .viz-placeholder .viz-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .viz-placeholder .viz-title { font-size: 1rem; color: var(--ink-mid); font-style: italic; }
+  .data-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.95rem; }
+  .data-table th { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0.7rem 1rem; text-align: left; }
+  .data-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--rule); color: var(--ink-mid); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--cream); }
+  .citation-block { background: var(--cream); border: 1px solid var(--rule); padding: 1.5rem 2rem; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 0.75rem; line-height: 1.7; color: var(--ink-mid); }
+  footer { max-width: 820px; margin: 0 auto; padding: 2rem 3rem; display: flex; justify-content: space-between; border-top: 1px solid var(--rule); }
+  footer p { font-family: 'Jost', sans-serif; font-size: 0.72rem; color: var(--ink-light); }
+  footer a { color: var(--accent); text-decoration: none; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 680px) { nav, .project-hero, .project-body, footer { padding-left: 1.5rem; padding-right: 1.5rem; } .method-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Mir Shabnam</a>
+  <a class="nav-back" href="index.html">← All Projects</a>
+</nav>
+<div class="project-hero">
+  <p class="project-tag">Intellectual History · Marxism · Network Mapping</p>
+  <h1>Marx: Theory<br>vs <em>Action</em></h1>
+  <p class="project-subtitle">Mapping the Intellectual Drift of Radical Thought</p>
+  <div class="project-rule"></div>
+  <p class="project-lead">An intellectual network map tracing how Marxist thought transformed from Marx's original insistence on the unity of theory and praxis — that philosophy must change the world, not merely interpret it — into the increasingly abstract theoretical systems of 20th-century Western Marxism.</p>
+</div>
+<div class="project-body">
+
+<section>
+  <p class="section-label">Research Question</p>
+  <p>Marx's Eleventh Thesis on Feuerbach is one of the most famous sentences in political philosophy: "The philosophers have only interpreted the world, in various ways; the point is to change it." How did a philosophical tradition founded on that insistence become, in its dominant 20th-century forms, a tradition of increasingly sophisticated interpretation and increasingly remote politics?</p>
+  <p>This project maps that drift as an intellectual network, tracing three distinct clusters in the Marxist tradition and the transmission pathways between them.</p>
+</section>
+
+<section>
+  <p class="section-label">The Three Clusters</p>
+  <div class="method-grid">
+    <div class="method-card"><div class="method-name">Praxis Tradition</div><div class="method-desc">Marx, Engels, early Lenin, Gramsci. Direct connection between theory and political action. Philosophy as instrument of transformation.</div></div>
+    <div class="method-card"><div class="method-name">Structuralist Tradition</div><div class="method-desc">Althusser, Poulantzas, Balibar. Increasing theoretical abstraction. Politics displaced by structural analysis.</div></div>
+    <div class="method-card"><div class="method-name">Critical Theory</div><div class="method-desc">Adorno, Horkheimer, Marcuse, Benjamin. Cultural critique. Growing pessimism about political possibility after Auschwitz.</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="section-label">Key Finding</p>
+  <div class="finding-block"><p>"The network map shows that the drift from praxis to theory is not a betrayal of Marxism. It is the response of serious thinkers to historical defeat: the failure of the German Revolution, Stalinism, fascism, the Holocaust. The abstraction is the wound."</p></div>
+  <div class="viz-placeholder"><div class="viz-label">Intellectual Network Map</div><div class="viz-title">NetworkX / Gephi network visualisation — upload here</div></div>
+  <div class="viz-placeholder"><div class="viz-label">Chronological Drift</div><div class="viz-title">Timeline visualisation of theory/action balance — upload here</div></div>
+</section>
+
+<section>
+  <p class="section-label">Citation</p>
+  <div class="citation-block">Shabnam, Mir. "Marx: Theory vs Action — Mapping the Intellectual Drift of Radical Thought." Independent Research. 2024. https://github.com/MirShabnam/marx-theory-vs-action</div>
+</section>
+</div>
+<footer>
+  <p>Mir Shabnam &ensp;·&ensp; 2025</p>
+  <p><a href="index.html">← Back to Portfolio</a></p>
+</footer>
+</body>
+</html>

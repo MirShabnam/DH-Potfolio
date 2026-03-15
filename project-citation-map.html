@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Gets to Define the Global? — Mir Shabnam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814; --ink-mid: #4a4640; --ink-light: #8a8480;
+    --paper: #faf8f4; --cream: #f2ede4; --rule: #d8d0c4;
+    --accent: #7c4a2e; --accent-light: #c4956a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+  .nav-back { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .project-hero { padding: 8rem 3rem 4rem; max-width: 820px; margin: 0 auto; opacity: 0; animation: fadeUp 0.8s ease forwards 0.1s; }
+  .project-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+  .project-hero h1 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 300; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.8rem; }
+  .project-hero h1 em { font-style: italic; color: var(--accent); }
+  .project-subtitle { font-size: 1.2rem; font-style: italic; color: var(--ink-light); margin-bottom: 2rem; }
+  .project-rule { width: 48px; height: 1px; background: var(--accent); margin-bottom: 2rem; }
+  .project-lead { font-size: 1.2rem; line-height: 1.75; color: var(--ink-mid); max-width: 640px; }
+  .project-body { max-width: 820px; margin: 0 auto; padding: 0 3rem 6rem; }
+  .project-body section { margin-bottom: 3.5rem; }
+  .section-label { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule); }
+  .project-body p { font-size: 1.1rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 1.2rem; }
+  .project-body h3 { font-size: 1.3rem; font-weight: 400; color: var(--ink); margin: 1.5rem 0 0.6rem; }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .method-card { background: var(--cream); border: 1px solid var(--rule); padding: 1rem 1.2rem; border-radius: 3px; }
+  .method-card .method-name { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .method-card .method-desc { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.5; }
+  .finding-block { border-left: 2px solid var(--accent-light); padding: 0.8rem 1.5rem; margin: 1.2rem 0; background: var(--cream); }
+  .finding-block p { font-size: 1.05rem; color: var(--ink); margin: 0; font-style: italic; }
+  .viz-placeholder { background: var(--cream); border: 1px solid var(--rule); border-radius: 4px; padding: 3rem 2rem; text-align: center; margin: 1.5rem 0; }
+  .viz-placeholder .viz-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .viz-placeholder .viz-title { font-size: 1rem; color: var(--ink-mid); font-style: italic; }
+  .data-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.95rem; }
+  .data-table th { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0.7rem 1rem; text-align: left; }
+  .data-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--rule); color: var(--ink-mid); vertical-align: top; }
+  .data-table tr:nth-child(even) td { background: var(--cream); }
+  .citation-block { background: var(--cream); border: 1px solid var(--rule); padding: 1.5rem 2rem; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 0.75rem; line-height: 1.7; color: var(--ink-mid); }
+  footer { max-width: 820px; margin: 0 auto; padding: 2rem 3rem; display: flex; justify-content: space-between; border-top: 1px solid var(--rule); }
+  footer p { font-family: 'Jost', sans-serif; font-size: 0.72rem; color: var(--ink-light); }
+  footer a { color: var(--accent); text-decoration: none; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 680px) { nav, .project-hero, .project-body, footer { padding-left: 1.5rem; padding-right: 1.5rem; } .method-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Mir Shabnam</a>
+  <a class="nav-back" href="index.html">← All Projects</a>
+</nav>
+<div class="project-hero">
+  <p class="project-tag">Epistemic Power · Network Analysis</p>
+  <h1>Who Gets to Define<br><em>the Global?</em></h1>
+  <p class="project-subtitle">A Citation Power Map of Global Studies Scholarship</p>
+  <div class="project-rule"></div>
+  <p class="project-lead">A Gephi network visualisation revealing that the field of Global Studies — which claims to study the entire world — concentrates its foundational citations overwhelmingly in European and North American institutional voices. This is not incidental. It is a power structure.</p>
+</div>
+<div class="project-body">
+
+<section>
+  <p class="section-label">Research Question</p>
+  <p>If you trace the citation networks of the most assigned global studies texts — the books that define what globalisation means, who studies it, and which frameworks are considered foundational — whose voices dominate? Which regions produce the scholars who are cited as authoritative? And whose scholarship, however rigorous, remains on the margins?</p>
+  <p>This project answers those questions with data. The result is a network map that makes epistemic power visible as a visual argument: the supposedly global field clusters almost entirely in blue.</p>
+</section>
+
+<section>
+  <p class="section-label">Methods</p>
+  <div class="method-grid">
+    <div class="method-card"><div class="method-name">Dataset Construction</div><div class="method-desc">Manual compilation of 20+ scholars, institutional affiliations, citation counts, and 40+ citation relationships from foundational Global Studies texts.</div></div>
+    <div class="method-card"><div class="method-name">Gephi Network Map</div><div class="method-desc">ForceAtlas2 layout. Node size = citation count. Node colour = institutional region (Global North / Global South). Edge weight = citation relationship strength.</div></div>
+    <div class="method-card"><div class="method-name">Interpretive Analysis</div><div class="method-desc">800-word scholarly essay analysing what the network reveals about the structural conditions of epistemic power in global scholarship.</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="section-label">The Scholar Landscape</p>
+  <p>The following table shows the dominant voices in Global Studies — the scholars most frequently assigned, cited, and treated as definitional. Note the institutional clustering.</p>
+  <table class="data-table">
+    <thead><tr><th>Scholar</th><th>Institution</th><th>Country</th><th>Citations (approx)</th></tr></thead>
+    <tbody>
+      <tr><td>Anthony Giddens</td><td>LSE, UK</td><td>UK</td><td>50,000+</td></tr>
+      <tr><td>Manuel Castells</td><td>USC / Berkeley</td><td>Spain / USA</td><td>60,000+</td></tr>
+      <tr><td>David Harvey</td><td>CUNY, USA</td><td>UK / USA</td><td>55,000+</td></tr>
+      <tr><td>Immanuel Wallerstein</td><td>Yale / Binghamton</td><td>USA</td><td>40,000+</td></tr>
+      <tr><td>Arjun Appadurai</td><td>NYU, USA</td><td>India / USA</td><td>35,000+</td></tr>
+      <tr><td>David Held</td><td>LSE / Durham</td><td>UK</td><td>15,000+</td></tr>
+      <tr><td>Saskia Sassen</td><td>Columbia, USA</td><td>Netherlands / USA</td><td>25,000+</td></tr>
+      <tr><td>Ulrich Beck</td><td>Munich, Germany</td><td>Germany</td><td>30,000+</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:1.5rem;">Compare with scholars from the Global South whose work on globalisation rarely appears in the same syllabi:</p>
+  <table class="data-table">
+    <thead><tr><th>Scholar</th><th>Institution</th><th>Country</th><th>Visibility in Western Syllabi</th></tr></thead>
+    <tbody>
+      <tr><td>Boaventura de Sousa Santos</td><td>Coimbra</td><td>Portugal / Brazil</td><td>Medium — growing</td></tr>
+      <tr><td>Achille Mbembe</td><td>Wits, South Africa</td><td>Cameroon / SA</td><td>Medium — rising</td></tr>
+      <tr><td>Walter Mignolo</td><td>Duke, USA</td><td>Argentina / USA</td><td>Medium — decolonial</td></tr>
+      <tr><td>Enrique Dussel</td><td>UAM, Mexico</td><td>Argentina / Mexico</td><td>Low — rarely assigned</td></tr>
+      <tr><td>Ngugi wa Thiong'o</td><td>UC Irvine</td><td>Kenya / USA</td><td>Low — literature only</td></tr>
+      <tr><td>Vandana Shiva</td><td>Independent, India</td><td>India</td><td>Low — activist framing</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <p class="section-label">Key Finding</p>
+  <div class="finding-block"><p>"The network map reveals what the syllabi conceal: global studies is not a map of the globe. It is a map of where the globe has been studied from. The field that claims to transcend parochialism has its own, very specific, very located parochialism."</p></div>
+  <p>The visualisation shows two distinct clusters separated by a near-absence of edges between them. The Global North cluster is dense, heavily interconnected, and dominated by scholars at a handful of elite UK and US institutions. The Global South cluster is sparse, weakly connected, and largely connected to the main cluster only through a small number of bridge scholars — Appadurai, Spivak — who are based at Global North institutions.</p>
+  <div class="viz-placeholder"><div class="viz-label">Network Visualisation</div><div class="viz-title">Gephi citation network map — upload your exported PNG here</div></div>
+</section>
+
+<section>
+  <p class="section-label">Citation</p>
+  <div class="citation-block">Shabnam, Mir. "Who Gets to Define the Global? A Citation Power Map of Global Studies Scholarship." Independent Research. 2025. https://github.com/MirShabnam/citation-power-map</div>
+</section>
+</div>
+<footer>
+  <p>Mir Shabnam &ensp;·&ensp; 2025</p>
+  <p><a href="index.html">← Back to Portfolio</a></p>
+</footer>
+</body>
+</html>
